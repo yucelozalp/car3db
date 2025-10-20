@@ -1,0 +1,76 @@
+{
+  "sample_vehicle": {
+    "make": "Toyota",
+    "model": "RAV4",
+    "generation": "IV (2013-2018)",
+    "series": "RAV4 2.0 CVT",
+    "trim": "Base",
+    "year": 2015,
+    "specifications": {
+      "body": {
+        "type": "Crossover",
+        "doors": null,
+        "seats": "5",
+        "class": null
+      },
+      "dimensions": {
+        "length_mm": "4646 mm",
+        "width_mm": "1806 mm",
+        "height_mm": "1713 mm",
+        "wheelbase_mm": "2670 mm",
+        "ground_clearance_mm": null,
+        "front_track_mm": "1540 mm",
+        "rear_track_mm": "1540 mm",
+        "turning_circle_m": "10.6 m"
+      },
+      "weight_capacity": {
+        "curb_weight_kg": "1570 kg",
+        "full_weight_kg": "2070 kg",
+        "payload_kg": "500 kg",
+        "trunk_min_l": "441 l",
+        "trunk_max_l": "1686 l",
+        "fuel_tank_l": "63 l"
+      },
+      "engine": {
+        "type": "Gasoline",
+        "layout": null,
+        "capacity_cm3": "1998 cm3",
+        "power_hp": "147 hp",
+        "max_power_rpm": "from 6 000 RPM",
+        "torque_nm": "199 N*m",
+        "torque_rpm": "to 4 200 RPM",
+        "cylinder_layout": "Inline",
+        "cylinders": "4",
+        "valves_per_cylinder": "4",
+        "injection_type": "Injector",
+        "compression_ratio": null,
+        "engine_code": null
+      },
+      "performance": {
+        "max_speed_kmh": "180 km/h",
+        "acceleration_0_100_s": "10.2 s"
+      },
+      "fuel_economy": {
+        "fuel_type": "95",
+        "city_consumption_l_100km": "10.3 l",
+        "highway_consumption_l_100km": "6.6 l",
+        "mixed_consumption_l_100km": "8 l",
+        "cruising_range_km": "from 610 to 950 km"
+      },
+      "drivetrain": {
+        "gearbox_type": "Continuously variable transmission (CVT)",
+        "gears": null,
+        "drive_wheels": "Front wheel drive"
+      },
+      "suspension_brakes": {
+        "front_suspension": "Independent, McPherson Struts",
+        "rear_suspension": "Independent, Multi wishbone",
+        "front_brakes": "ventilated disc",
+        "rear_brakes": "Disc"
+      }
+    }
+  },
+  "note": "This is a sample record. The full database contains 262,827+ complete records with all specifications.",
+  "purchase": "https://car3db.gumroad.com/l/enwrs"
+}
+
