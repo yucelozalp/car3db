@@ -1,13 +1,34 @@
-# 🚗 Car3DB - Complete Automotive Database (1908-2025)
+# 🚗 Car3DB — Complete Automotive Database (1908–2026)
 
 [![License: Commercial](https://img.shields.io/badge/License-Commercial-blue.svg)](https://car3db.gumroad.com/l/enwrs)
-[![Database Records](https://img.shields.io/badge/Records-262K%2B-green.svg)](https://car3db.gumroad.com/l/enwrs)
-[![Years Coverage](https://img.shields.io/badge/Years-1908--2025-orange.svg)](https://car3db.gumroad.com/l/enwrs)
+[![Database Records](https://img.shields.io/badge/Records-4.5M%2B-green.svg)](https://car3db.gumroad.com/l/enwrs)
+[![Years Coverage](https://img.shields.io/badge/Years-1908--2026-orange.svg)](https://car3db.gumroad.com/l/enwrs)
 [![Format](https://img.shields.io/badge/Format-MySQL%20%7C%20CSV-red.svg)](https://car3db.gumroad.com/l/enwrs)
+[![Version](https://img.shields.io/badge/Schema-v2-purple.svg)](SCHEMA.md)
 
-> **The most comprehensive automotive database spanning 117 years of automotive history**
+> **The most comprehensive automotive database — 118 years of automotive history, refreshed to November 2026.**
 
-This repository contains **sample data** and documentation for Car3DB, a complete automotive database with 262,827+ verified records from 1908 to 2025.
+This repository contains **sample data** and documentation for Car3DB. The current release is **v2**,
+generated from car2db.com on **01 November 2026** (previous release: 01 October 2025).
+
+---
+
+## 🆕 What changed in v2
+
+| | v1 (Oct 2025) | v2 (Nov 2026) |
+|---|---|---|
+| **Data date** | 01 Oct 2025 | **01 Nov 2026** |
+| **Specification storage** | 54 fixed columns in `specs.specs_json` | **EAV: `specifications` + `specification_values`** |
+| **Specification fields** | 54 (fixed, new fields silently dropped) | **82 and open-ended** — every field car2db exposes, including EV battery/charging, CO₂, safety ratings, trailer load |
+| **Spec values** | 98,239 rows | **4,256,122 rows** |
+| **Units** | glued into the value (`"4578 mm"`) | **split into `value` + `unit`** (numeric queries need no string surgery) |
+| **Spec groups** | none | `Bodywork`, `Engine`, `Gearbox and handling`, `Operating characteristics`, `Suspension and brakes`, `Electric`, `Safety` |
+| **Generation years** | only inside the name | **`year_begin` / `year_end` columns** |
+| **Trim production years** | not stored | `start_production_year` / `end_production_year` |
+| **Empty `equipments` table** | 60 columns, mostly NULL | equipment + option values are separate tables |
+
+The v1 `specs` table is still exported, so existing integrations keep working — see
+[Migrating from v1](#-migrating-from-v1).
 
 ---
 
@@ -17,32 +38,33 @@ This repository contains **sample data** and documentation for Car3DB, a complet
 |----------|-------|-------------|
 | **Manufacturers** | 403 | All major automotive brands worldwide |
 | **Models** | 4,742 | Complete model lineups |
-| **Generations** | 10,223 | Model generations with year ranges |
-| **Series** | 15,546 | Engine and trim variants |
-| **Trim Levels** | 100,126+ | Detailed trim specifications |
-| **Specifications** | 98,239+ | Complete technical data |
-| **Equipment Sets** | 33,548+ | Detailed equipment lists |
-| **Total Records** | 262,827+ | Comprehensive automotive data |
+| **Generations** | 10,223 | Model generations with `year_begin` / `year_end` |
+| **Series** | 15,546 | Body/engine family variants |
+| **Trim Levels** | 98,239 | Detailed trim specifications |
+| **Specifications (catalogue)** | 82 | Distinct specification fields |
+| **Specification values** | 4,256,122 | One row per trim × field |
+| **Equipment sets** | 33,548 | Named equipment packages |
+| **Total rows** | **4,517,144+** | Across all tables |
 
 ---
 
 ## 🎯 What's Included
 
 ### Complete Specifications
-- ✅ **Engine Data**: Type, capacity, power, torque, cylinders, injection type
-- ✅ **Performance**: 0-100 km/h, top speed, acceleration
-- ✅ **Dimensions**: Length, width, height, wheelbase, ground clearance
-- ✅ **Weight & Capacity**: Curb weight, payload, trunk capacity
-- ✅ **Fuel Economy**: City, highway, mixed consumption, range
-- ✅ **Drivetrain**: Transmission type, gears, drive wheels
-- ✅ **Suspension**: Front and rear suspension types
-- ✅ **Brakes**: Disc types, ABS information
-- ✅ **Body**: Type, doors, seats, classification
+- ✅ **Engine**: type, placement, capacity, power (hp *and* kW), torque + RPM band, injection, cylinder layout/count, valves, bore/stroke, compression ratio, boost type, intercooler, engine code
+- ✅ **Performance**: 0–100 km/h, top speed, power-to-weight inputs
+- ✅ **Dimensions**: length, width, height, wheelbase, both tracks, ground clearance, wheel size, PCD
+- ✅ **Weight & capacity**: curb weight, gross weight, payload, trailer load, trunk min/max, cargo volume
+- ✅ **Fuel economy**: city / highway / mixed per 100 km, consumption, cruising range, CO₂, emission standard
+- ✅ **Drivetrain**: gearbox type, gear count, drive wheels, turning circle
+- ✅ **Chassis**: front/rear suspension, front/rear brakes, disc sizes
+- ✅ **Electric & hybrid**: battery type/capacity (gross *and* usable), electric range, connector type, charging times, max charging power, charge cycles
+- ✅ **Body**: body type, doors, seats, class, country, steering-wheel position
 
 ### Multiple Formats
-- 🗄️ **MySQL Database Dump** - Ready-to-import `.sql` file
-- 📊 **CSV Files** - Individual CSV files for each table
-- 🔧 **Normalized Schema** - Proper relationships and indexes
+- 🗄️ **MySQL Database Dump** — ready-to-import `.sql` (utf8mb4, InnoDB, FK constraints)
+- 📊 **CSV Files** — one file per table
+- 🔧 **Normalised Schema** — 10 tables with indexes and foreign keys
 
 ---
 
@@ -50,156 +72,154 @@ This repository contains **sample data** and documentation for Car3DB, a complet
 
 ```
 car3db/
-├── makes              (403 records)
-│   ├── id
-│   └── name
+├── makes                  (403)
+│   ├── id, name, type_id, date_create, date_update
+│   └──← models
 │
-├── models             (4,742 records)
-│   ├── id
-│   ├── make_id       → makes.id
-│   └── name
+├── models                 (4,742)
+│   ├── id, make_id, name, type_id
+│   └──← generations, series
 │
-├── generations        (10,223 records)
-│   ├── id
-│   ├── model_id      → models.id
-│   └── name
+├── generations            (10,223)
+│   ├── id, model_id, name, year_begin, year_end
+│   └──← series
 │
-├── series             (15,546 records)
-│   ├── id
-│   ├── model_id      → models.id
-│   ├── generation_id → generations.id
-│   └── name
+├── series                 (15,546)
+│   ├── id, model_id, generation_id, name
+│   └──← trims
 │
-├── trims              (100,126+ records)
-│   ├── id
-│   ├── series_id     → series.id
-│   └── name
+├── trims                  (98,239)
+│   ├── id, series_id, model_id, name
+│   ├── start_production_year, end_production_year
+│   ├── specs_status          'full' | 'list' | 'none' | 'error'
+│   ├──← specs                 (v1-compatible JSON blobs)
+│   ├──← specification_values  (v2 EAV)
+│   └──← equipments → option_values
 │
-├── specs              (98,239+ records)
-│   ├── trim_id       → trims.id
-│   ├── specs_json
-│   └── specs_raw_json
+├── specifications         (82)                 ← v2
+│   └── id, name, group_name, api_id, spec_key
 │
-└── equipments         (33,548+ records)
-    ├── trim_id       → trims.id
-    └── 60+ specification columns
+├── specification_values   (4,256,122)          ← v2
+│   ├── trim_id  → trims.id
+│   ├── specification_id → specifications.id
+│   └── value, unit
+│
+├── specs                  (98,239)             ← v1 compatible
+│   ├── trim_id
+│   ├── specs_json         (54 snake_case keys)
+│   ├── specs_raw_json     (car2db labels)
+│   ├── specs_grouped_json (category → items)   ← v2
+│   └── key_specs_json     (headline specs)     ← v2
+│
+├── equipments             (33,548)
+│   └── id, trim_id, name
+│
+└── option_values          (0 in this snapshot)
+    └── id, equipment_id, name, value, group_name
 ```
 
 ---
 
-## 🔍 Sample Data
+## 🔍 Reading a trim
 
-This repository contains **sample data** to help you understand the database structure:
+v2 keeps every field, so the same vehicle reads the same way the source site displays it:
 
-- [`/samples/makes.csv`](samples/makes.csv) - Sample manufacturers
-- [`/samples/models.csv`](samples/models.csv) - Sample models
-- [`/samples/specifications.json`](samples/specifications.json) - Sample spec data
-- [`/samples/schema.sql`](samples/schema.sql) - Database schema
+```sql
+SELECT s.group_name, s.name, v.value, v.unit
+FROM specification_values v
+JOIN specifications s ON s.id = v.specification_id
+WHERE v.trim_id = 220224
+ORDER BY s.group_name, s.name;
+```
 
-### Sample Record Example
+```
+Bodywork            | Body type            | Wagon              | NULL
+Bodywork            | Length               | 4578               | mm
+Engine              | Engine type          | Diesel             | NULL
+Engine              | Capacity             | 1968               | cm3
+Engine              | Engine power         | 184                | hp
+Operating char.     | Acceleration (0-100) | 7.8                | s
+...
+```
 
-```json
-{
-  "make": "Toyota",
-  "model": "RAV4",
-  "generation": "IV (2013-2018)",
-  "series": "RAV4 2.0 CVT",
-  "trim": "Base",
-  "specifications": {
-    "engine_type": "Gasoline",
-    "engine_capacity": "1998 cm3",
-    "engine_power": "147 hp",
-    "max_torque": "199 N*m",
-    "acceleration_0_100": "10.2 s",
-    "max_speed": "180 km/h",
-    "fuel_city": "10.3 l/100km",
-    "fuel_highway": "6.6 l/100km",
-    "fuel_mixed": "8 l/100km",
-    "gearbox": "CVT",
-    "drive_wheels": "FWD",
-    "length": "4646 mm",
-    "width": "1806 mm",
-    "height": "1713 mm",
-    "curb_weight": "1570 kg",
-    "trunk_min": "441 l",
-    "trunk_max": "1686 l"
-  }
-}
+Full example: [`samples/specifications.json`](samples/specifications.json).
+
+### Numeric queries are now trivial
+
+```sql
+-- Every 300+ hp wagon from 2015 onwards, no string parsing
+SELECT ma.name AS make, mo.name AS model, t.name AS trim,
+       power.value AS hp, body.value AS body_type
+FROM trims t
+JOIN series s        ON s.id = t.series_id
+JOIN models mo       ON mo.id = t.model_id
+JOIN makes ma        ON ma.id = mo.make_id
+JOIN generations g   ON g.id = s.generation_id
+JOIN specifications sp_power ON sp_power.name = 'Engine power'
+JOIN specification_values power ON power.trim_id = t.id AND power.specification_id = sp_power.id
+JOIN specifications sp_body ON sp_body.name = 'Body type'
+JOIN specification_values body ON body.trim_id = t.id AND body.specification_id = sp_body.id
+WHERE CAST(power.value AS UNSIGNED) >= 300
+  AND body.value = 'Wagon'
+  AND g.year_begin >= 2015
+ORDER BY CAST(power.value AS UNSIGNED) DESC;
 ```
 
 ---
 
-## 💼 Use Cases
+## 🔄 Migrating from v1
 
-### 🌐 Web Applications
-- Car marketplaces and classified ads
-- Vehicle comparison tools
-- Automotive content portals
-- Dealer inventory systems
+v1 consumers keep working: `specs.specs_json` and `specs.specs_raw_json` are still populated with
+the same 54 keys and the same `"value unit"` strings.
 
-### 📱 Mobile Apps
-- Car finder and discovery apps
-- Specification lookup tools
-- Vintage car catalogs
-- Automotive reference apps
+What changed:
 
-### 🏢 Business Solutions
-- Vehicle history services
-- Insurance platforms
-- Fleet management systems
-- Automotive APIs
-
-### 📊 Data Science & Research
-- Market trend analysis
-- Machine learning datasets
-- Academic automotive research
-- Historical data analysis
+| v1 | v2 |
+|---|---|
+| `specs.specs_json` | still present, **plus** `specs_grouped_json` (all 82 fields, grouped) |
+| `equipments` (60 spec columns) | now a real equipment table + `option_values`; the spec data lives in `specification_values` |
+| `generations.name = "7 generation [2012 - 2017]"` | same name, **plus** `year_begin = 2012`, `year_end = 2017` |
+| `trims.name` | same, **plus** production years and `specs_status` |
 
 ---
 
 ## 🚀 Getting Started
 
-### Option 1: MySQL Import
-```bash
-# Import the full database
-mysql -u username -p database_name < car3db_full.sql
+### Option 1: MySQL / MariaDB import
 
-# Query example
-SELECT m.name as make, mo.name as model, t.name as trim
-FROM makes m
-JOIN models mo ON m.id = mo.make_id
-JOIN trims t ON mo.id = t.model_id
-WHERE m.name = 'Toyota';
+```bash
+mysql -u username -p -e "CREATE DATABASE car3db CHARACTER SET utf8mb4"
+mysql -u username -p car3db < car3db_v2.sql
 ```
 
-### Option 2: CSV Import
+The dump disables foreign-key checks while loading and re-enables them afterwards, so a plain
+`mysql < file.sql` is enough.
+
+### Option 2: CSV
+
 ```python
 import pandas as pd
 
-# Load data
-makes = pd.read_csv('car3db_csv/makes.csv')
+makes  = pd.read_csv('car3db_csv/makes.csv')
 models = pd.read_csv('car3db_csv/models.csv')
-specs = pd.read_csv('car3db_csv/specs.csv')
+values = pd.read_csv('car3db_csv/specification_values.csv')
+specs  = pd.read_csv('car3db_csv/specifications.csv')
 
-# Merge and analyze
-df = makes.merge(models, left_on='id', right_on='make_id')
-print(df.head())
+# One row per trim × field, then pivot to a wide frame
+wide = (values.merge(specs, left_on='specification_id', right_on='id')
+              .pivot_table(index='trim_id', columns='name', values='value', aggfunc='first'))
 ```
 
 ### Option 3: REST API
-```javascript
-// Example API implementation
-app.get('/api/makes', async (req, res) => {
-  const makes = await db.query('SELECT * FROM makes ORDER BY name');
-  res.json(makes);
-});
 
-app.get('/api/models/:makeId', async (req, res) => {
-  const models = await db.query(
-    'SELECT * FROM models WHERE make_id = ?', 
-    [req.params.makeId]
-  );
-  res.json(models);
+```javascript
+app.get('/api/trims/:id', async (req, res) => {
+  const [values] = await db.query(`
+    SELECT s.group_name AS \`group\`, s.name, v.value, v.unit
+    FROM specification_values v
+    JOIN specifications s ON s.id = v.specification_id
+    WHERE v.trim_id = ?`, [req.params.id]);
+  res.json(values);
 });
 ```
 
@@ -208,75 +228,61 @@ app.get('/api/models/:makeId', async (req, res) => {
 ## 📊 Statistics & Coverage
 
 ### By Decade
-- **1900s-1920s**: Early automotive era, rare classics
-- **1930s-1950s**: Pre-war and post-war classics
-- **1960s-1980s**: Muscle cars and vintage automobiles
-- **1990s-2010s**: Modern classics and sports cars
-- **2010s-2025**: Contemporary vehicles and electrics
+- **1900s–1920s**: Early automotive era, rare classics
+- **1930s–1950s**: Pre-war and post-war classics
+- **1960s–1980s**: Muscle cars and vintage automobiles
+- **1990s–2010s**: Modern classics and sports cars
+- **2010s–2026**: Contemporary vehicles, hybrids and EVs
+
+880 generations end in 2025 or later, including model years through 2027.
 
 ### Geographic Coverage
-- 🌍 **Global**: Manufacturers from all continents
-- 🇺🇸 American brands (Ford, Chevrolet, Tesla, etc.)
-- 🇩🇪 German brands (BMW, Mercedes-Benz, Volkswagen, etc.)
-- 🇯🇵 Japanese brands (Toyota, Honda, Nissan, etc.)
-- 🇮🇹 Italian brands (Ferrari, Lamborghini, Fiat, etc.)
-- 🇬🇧 British brands (Jaguar, Land Rover, Aston Martin, etc.)
-- 🇫🇷 French brands (Peugeot, Renault, Citroën, etc.)
-- 🇰🇷 Korean brands (Hyundai, Kia, Genesis, etc.)
+- 🌍 **Global**: manufacturers from every continent
+- 🇺🇸 American, 🇩🇪 German, 🇯🇵 Japanese, 🇮🇹 Italian, 🇬🇧 British, 🇫🇷 French, 🇰🇷 Korean brands and more
 
 ---
 
 ## ✨ Features
 
 ### ✓ Comprehensive Coverage
-117 years of automotive history from 1908 to 2025
+118 years of automotive history, refreshed to November 2026
 
-### ✓ Verified Data
-All records are carefully curated and verified for accuracy
+### ✓ Nothing Silently Dropped
+The v2 EAV layout stores every field the source exposes — adding a field never requires a schema change
 
-### ✓ Normalized Structure
-Proper database design with foreign keys and indexes
+### ✓ Typed Values
+Numeric values and units are separate columns, so `AVG()`, `>=`, and indexing work as expected
+
+### ✓ Normalised Structure
+10 tables, foreign keys, and indexes on every join path
 
 ### ✓ Multiple Formats
-MySQL dump and CSV files for maximum compatibility
-
-### ✓ Rich Specifications
-60+ specification fields per vehicle
+MySQL dump, per-table CSV, and a nested JSON hierarchy
 
 ### ✓ Commercial License
-Use in your commercial projects without restrictions
-
-### ✓ Regular Updates
-Database is maintained and updated regularly
-
-### ✓ Easy Integration
-Ready-to-use structure, import and start querying
+Use in commercial projects without restrictions
 
 ---
 
 ## 📦 What You Get
 
-When you purchase the full database:
-
-- ✅ **Complete MySQL Dump** (~505 MB)
-- ✅ **CSV Files** (All tables, UTF-8 encoded)
-- ✅ **Database Schema** (SQL file with structure)
-- ✅ **Documentation** (Import guides and examples)
-- ✅ **Sample Queries** (Common use cases)
-- ✅ **Commercial License** (Use in any project)
-- ✅ **Instant Download** (No waiting, immediate access)
+- ✅ Complete MySQL dump (utf8mb4)
+- ✅ CSV files (all tables)
+- ✅ Schema documentation ([`SCHEMA.md`](SCHEMA.md))
+- ✅ Query examples ([`docs/QUERY_EXAMPLES.md`](docs/QUERY_EXAMPLES.md))
+- ✅ Sample data (`samples/`)
+- ✅ Commercial license
 
 ---
 
 ## 💰 Pricing
 
-### Full Database Access: **$49** (One-time payment)
+### Full Database Access: **$49** (one-time payment)
 
-✅ No subscriptions, no recurring fees  
-✅ Lifetime access to purchased version  
-✅ Commercial use included  
-✅ 262,827+ verified records  
-✅ Both MySQL and CSV formats  
+✅ No subscriptions, no recurring fees
+✅ Lifetime access to the purchased version
+✅ Commercial use included
+✅ 4.5M+ verified rows
 
 ---
 
@@ -284,98 +290,61 @@ When you purchase the full database:
 
 **👉 [Get the Complete Database ($49)](https://car3db.gumroad.com/l/enwrs)**
 
-*This repository only contains sample data. For the complete database with 262,827+ records, visit the link above.*
+*This repository only contains sample data.*
 
 ---
 
 ## 🔧 Technical Specifications
 
 | Specification | Details |
-|--------------|---------|
-| **Database Size** | ~505 MB (MySQL), ~280 MB (CSV) |
-| **Encoding** | UTF-8 (utf8mb4_general_ci) |
-| **Database Engine** | InnoDB |
-| **MySQL Version** | 5.7+ / MariaDB 10.2+ |
-| **Total Tables** | 7 main tables + relations |
-| **Total Records** | 262,827+ |
-| **Fields per Vehicle** | 60+ specifications |
+|---|---|
+| **Database Size** | ~700 MB (MySQL dump), ~720 MB (CSV) |
+| **Encoding** | UTF-8 (`utf8mb4_general_ci`) |
+| **Storage Engine** | InnoDB |
+| **MySQL Version** | 5.7+ / MariaDB 10.2+ (JSON columns optional) |
+| **Total Tables** | 10 |
+| **Total Rows** | 4,517,144+ |
+| **Spec fields** | 82 (open-ended) |
+| **Schema version** | v2 |
 
 ---
 
 ## 📖 Documentation
 
 ### Schema Documentation
-See [`SCHEMA.md`](SCHEMA.md) for detailed table structures and relationships.
+See [`SCHEMA.md`](SCHEMA.md) for every table, column, and relationship.
 
-### Integration Guides
-- [MySQL Import Guide](docs/MYSQL_IMPORT.md)
-- [CSV Import Guide](docs/CSV_IMPORT.md)
-- [API Implementation Examples](docs/API_EXAMPLES.md)
-- [Query Examples](docs/QUERY_EXAMPLES.md)
-
-### Use Case Examples
-- [Building a Car Marketplace](docs/examples/marketplace.md)
-- [Creating a Comparison Tool](docs/examples/comparison.md)
-- [Building an API](docs/examples/api.md)
+### Query Examples
+See [`docs/QUERY_EXAMPLES.md`](docs/QUERY_EXAMPLES.md) — v1 queries plus v2 EAV equivalents.
 
 ---
 
 ## ❓ FAQ
 
 ### Is this free?
-This repository contains **sample data only**. The complete database with 262,827+ records is available for purchase at [$49](https://car3db.gumroad.com/l/enwrs).
+This repository contains **sample data only**. The complete database is available for purchase at [$49](https://car3db.gumroad.com/l/enwrs).
 
-### What's in the sample data?
-Sample data includes a small subset of the full database to demonstrate structure and format.
+### What's the difference between `specs` and `specification_values`?
+`specs` is the v1-compatible JSON blob (54 fixed keys). `specification_values` is the v2 EAV table with
+all 82 fields, typed values and units. Both are kept so old and new consumers can coexist.
 
 ### Can I use this commercially?
 The full database includes a commercial license. Sample data is for evaluation only.
 
-### What formats are available?
-The full database includes both MySQL dump (.sql) and CSV files.
-
-### Do you provide support?
-Documentation and import guides are included. For additional support, contact after purchase.
+### What database systems are supported?
+MySQL/MariaDB directly via the SQL dump. CSV files import into PostgreSQL, SQLite, BigQuery, etc.
 
 ### How do I get updates?
-The full database purchase includes the current version. Future updates may be offered separately.
-
-### What database systems are supported?
-MySQL/MariaDB directly via SQL dump. CSV files can be imported into any database (PostgreSQL, SQLite, MongoDB, etc.).
-
----
-
-## 🌟 Why Car3DB?
-
-### Compared to Other Solutions
-
-| Feature | Car3DB | API Services | Web Scraping |
-|---------|--------|--------------|--------------|
-| **One-time Cost** | ✅ $49 | ❌ $99/mo+ | ⚠️ Free but risky |
-| **Offline Access** | ✅ Yes | ❌ No | ⚠️ Limited |
-| **Commercial Use** | ✅ Yes | ⚠️ Limited | ❌ No |
-| **Historic Data** | ✅ 1908-2025 | ⚠️ Limited | ❌ No |
-| **Complete Specs** | ✅ 60+ fields | ⚠️ Basic only | ⚠️ Inconsistent |
-| **Rate Limits** | ✅ None | ❌ Yes | ❌ Yes |
-| **Data Quality** | ✅ Verified | ⚠️ Varies | ❌ Inconsistent |
-
----
-
-## 🤝 Contributing
-
-This repository is for documentation and samples only. The main database is a commercial product.
-
-If you find errors in the sample data or documentation, please open an issue.
+The purchase includes the current (v2, Nov 2026) release. Future releases are offered separately.
 
 ---
 
 ## 📄 License
 
-**Sample data in this repository**: MIT License (for evaluation only)
+**Sample data in this repository**: MIT License (evaluation only)
 
-**Full database**: Commercial License (included with purchase)
-
-The full database can be used in commercial projects. You may not resell or redistribute the database as a standalone product.
+**Full database**: Commercial License (included with purchase). The full database may be used in
+commercial projects; it may not be resold or redistributed as a standalone product.
 
 See [LICENSE](LICENSE) for details.
 
@@ -383,28 +352,12 @@ See [LICENSE](LICENSE) for details.
 
 ## 🔗 Links
 
-- 🛒 **[Purchase Full Database](https://car3db.gumroad.com/l/enwrs)** - $49 one-time payment
-- 🌐 **[Official Website](https://car3db.gumroad.com)** - More information
-- 📧 **[Contact](https://car3db.gumroad.com/l/enwrs)** - Questions? Get in touch
+- 🛒 **[Purchase Full Database](https://car3db.gumroad.com/l/enwrs)**
+- 🌐 **[Official Website](https://car3db.gumroad.com)**
 
 ---
 
-## 📊 Repository Stats
+**Car3DB v2** — The Complete Automotive Database
+*4,517,144+ rows · 403 manufacturers · 98,239 trims · 82 spec fields · 1908–2026*
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/car3db?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/car3db?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/yourusername/car3db?style=social)
-
----
-
-## 🎯 Keywords
-
-`automotive database` `car database` `vehicle database` `car specifications` `automobile data` `mysql car database` `csv car database` `vehicle specs` `car models` `automotive data` `car API` `vehicle API` `car data download` `automotive dataset` `car information` `vehicle information` `classic cars` `vintage cars` `car history` `automobile history`
-
----
-
-**Car3DB** - The Complete Automotive Database  
-*262,827+ Records • 403 Manufacturers • 100,126+ Trims • 1908-2025*
-
-© 2025 Car3DB. All rights reserved.
-
+© 2026 Car3DB. All rights reserved.

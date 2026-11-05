@@ -1,0 +1,30 @@
+{
+    "@context": "/contexts/Equipments",
+    "@id": "/equipments",
+    "@type": "Collection",
+    "totalItems": 0,
+    "member": [],
+    "view": {
+        "@id": "/equipments?trimId=220224&typeId=1",
+        "@type": "PartialCollectionView"
+    },
+    "search": {
+        "@type": "IriTemplate",
+        "template": "/equipments{?trimId,typeId}",
+        "variableRepresentation": "BasicRepresentation",
+        "mapping": [
+            {
+                "@type": "IriTemplateMapping",
+                "variable": "trimId",
+                "property": "trimId",
+                "required": false
+            },
+            {
+                "@type": "IriTemplateMapping",
+                "variable": "typeId",
+                "property": "typeId",
+                "required": false
+            }
+        ]
+    }
+}

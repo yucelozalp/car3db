@@ -1,0 +1,247 @@
+{
+    "@context": "/contexts/Generations",
+    "@id": "/generations",
+    "@type": "Collection",
+    "totalItems": 10,
+    "member": [
+        {
+            "@id": "/generations/8736",
+            "@type": "Generations",
+            "id": 8736,
+            "modelId": 1908,
+            "name": "1 generation",
+            "yearBegin": "1974",
+            "yearEnd": "1993",
+            "dateCreate": 1461888012,
+            "dateUpdate": 1568055047,
+            "typeId": 1,
+            "seriesIds": [
+                7989,
+                7991,
+                47451,
+                49410,
+                49411
+            ],
+            "breadcrumbs": null
+        },
+        {
+            "@id": "/generations/2165",
+            "@type": "Generations",
+            "id": 2165,
+            "modelId": 1908,
+            "name": "2 generation",
+            "yearBegin": "1983",
+            "yearEnd": "1992",
+            "dateCreate": 1403654897,
+            "dateUpdate": 1568055047,
+            "typeId": 1,
+            "seriesIds": [
+                7988,
+                7990,
+                49406,
+                49407,
+                49408,
+                49409
+            ],
+            "breadcrumbs": null
+        },
+        {
+            "@id": "/generations/2164",
+            "@type": "Generations",
+            "id": 2164,
+            "modelId": 1908,
+            "name": "3 generation",
+            "yearBegin": "1991",
+            "yearEnd": "2000",
+            "dateCreate": 1403654897,
+            "dateUpdate": 1568055047,
+            "typeId": 1,
+            "seriesIds": [
+                7976,
+                7983,
+                7986,
+                7987
+            ],
+            "breadcrumbs": null
+        },
+        {
+            "@id": "/generations/2163",
+            "@type": "Generations",
+            "id": 2163,
+            "modelId": 1908,
+            "name": "4 generation",
+            "yearBegin": "1997",
+            "yearEnd": "2006",
+            "dateCreate": 1403654897,
+            "dateUpdate": 1568055046,
+            "typeId": 1,
+            "seriesIds": [
+                7980,
+                7982,
+                7984,
+                7985,
+                47450,
+                51512
+            ],
+            "breadcrumbs": null
+        },
+        {
+            "@id": "/generations/2162",
+            "@type": "Generations",
+            "id": 2162,
+            "modelId": 1908,
+            "name": "5 generation",
+            "yearBegin": "2003",
+            "yearEnd": "2009",
+            "dateCreate": 1403654897,
+            "dateUpdate": 1568055046,
+            "typeId": 1,
+            "seriesIds": [
+                7973,
+                7978,
+                7979,
+                7981,
+                49398,
+                49399,
+                49400,
+                49401,
+                49402,
+                49403,
+                49404
+            ],
+            "breadcrumbs": null
+        },
+        {
+            "@id": "/generations/2161",
+            "@type": "Generations",
+            "id": 2161,
+            "modelId": 1908,
+            "name": "6 generation",
+            "yearBegin": "2008",
+            "yearEnd": "2012",
+            "dateCreate": 1403654897,
+            "dateUpdate": 1568055045,
+            "typeId": 1,
+            "seriesIds": [
+                7972,
+                7975,
+                7977,
+                47449,
+                49393,
+                49394,
+                49395,
+                49396,
+                49397,
+                53060
+            ],
+            "breadcrumbs": null
+        },
+        {
+            "@id": "/generations/2160",
+            "@type": "Generations",
+            "id": 2160,
+            "modelId": 1908,
+            "name": "7 generation",
+            "yearBegin": "2012",
+            "yearEnd": "2017",
+            "dateCreate": 1403654897,
+            "dateUpdate": 1568055044,
+            "typeId": 1,
+            "seriesIds": [
+                4347,
+                4348,
+                4349,
+                7974,
+                49389,
+                49390,
+                49391,
+                49392,
+                51487
+            ],
+            "breadcrumbs": null
+        },
+        {
+            "@id": "/generations/10817",
+            "@type": "Generations",
+            "id": 10817,
+            "modelId": 1908,
+            "name": "7 generation [restyling]",
+            "yearBegin": "2017",
+            "yearEnd": "2020",
+            "dateCreate": 1498001015,
+            "dateUpdate": 1645516397,
+            "typeId": 1,
+            "seriesIds": [
+                53137,
+                53317,
+                53689,
+                53690,
+                53691,
+                53692,
+                53693,
+                53694,
+                53750,
+                53797
+            ],
+            "breadcrumbs": null
+        },
+        {
+            "@id": "/generations/123902",
+            "@type": "Generations",
+            "id": 123902,
+            "modelId": 1908,
+            "name": "8 generation",
+            "yearBegin": "2019",
+            "yearEnd": "2024",
+            "dateCreate": 1575316741,
+            "dateUpdate": 1575316741,
+            "typeId": 1,
+            "seriesIds": [
+                62932,
+                67024,
+                76026
+            ],
+            "breadcrumbs": null
+        },
+        {
+            "@id": "/generations/131791",
+            "@type": "Generations",
+            "id": 131791,
+            "modelId": 1908,
+            "name": "8 generation [restyling]",
+            "yearBegin": "2024",
+            "yearEnd": "2026",
+            "dateCreate": 1709976792,
+            "dateUpdate": 1709976792,
+            "typeId": 1,
+            "seriesIds": [
+                73400,
+                73401
+            ],
+            "breadcrumbs": null
+        }
+    ],
+    "view": {
+        "@id": "/generations?modelId=1908&typeId=1",
+        "@type": "PartialCollectionView"
+    },
+    "search": {
+        "@type": "IriTemplate",
+        "template": "/generations{?modelId,typeId}",
+        "variableRepresentation": "BasicRepresentation",
+        "mapping": [
+            {
+                "@type": "IriTemplateMapping",
+                "variable": "modelId",
+                "property": "modelId",
+                "required": false
+            },
+            {
+                "@type": "IriTemplateMapping",
+                "variable": "typeId",
+                "property": "typeId",
+                "required": false
+            }
+        ]
+    }
+}

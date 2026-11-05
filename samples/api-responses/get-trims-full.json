@@ -1,0 +1,346 @@
+{
+    "@context": "/contexts/TrimFull",
+    "@id": "/trims/220224/full",
+    "@type": "TrimFull",
+    "id": 220224,
+    "name": "2.0 TDI DSG 4MOTION (184 hp)",
+    "yearBegin": null,
+    "yearEnd": null,
+    "breadcrumbs": {
+        "type": {
+            "id": 1,
+            "name": "car"
+        },
+        "make": {
+            "id": 184,
+            "name": "Volkswagen"
+        },
+        "model": {
+            "id": 1908,
+            "name": "Golf"
+        },
+        "generation": {
+            "id": 2160,
+            "name": "7 generation",
+            "yearBegin": 2012,
+            "yearEnd": 2017
+        },
+        "series": {
+            "id": 51487,
+            "name": "Alltrack wagon 5-doors"
+        }
+    },
+    "keySpecifications": {
+        "engineVolume": 1968,
+        "power": 184,
+        "transmission": "robot",
+        "transmissionGears": 6,
+        "drive": "All wheel drive (AWD)",
+        "bodyType": "Wagon",
+        "seats": 5,
+        "acceleration": 7.8,
+        "fuelConsumptionMixed": 5,
+        "maxSpeed": 219
+    },
+    "specifications": [
+        {
+            "category": {
+                "id": 1,
+                "name": "Bodywork"
+            },
+            "items": [
+                {
+                    "id": 2,
+                    "name": "Body type",
+                    "value": "Wagon",
+                    "unit": null
+                },
+                {
+                    "id": 4,
+                    "name": "Number of seater",
+                    "value": "5",
+                    "unit": null
+                },
+                {
+                    "id": 5,
+                    "name": "Length",
+                    "value": "4578",
+                    "unit": "mm"
+                },
+                {
+                    "id": 6,
+                    "name": "Width",
+                    "value": "1799",
+                    "unit": "mm"
+                },
+                {
+                    "id": 7,
+                    "name": "Height",
+                    "value": "1515",
+                    "unit": "mm"
+                },
+                {
+                    "id": 8,
+                    "name": "Wheelbase",
+                    "value": "2630",
+                    "unit": "mm"
+                },
+                {
+                    "id": 9,
+                    "name": "Front track",
+                    "value": "1546",
+                    "unit": "mm"
+                },
+                {
+                    "id": 10,
+                    "name": "Rear track",
+                    "value": "1517",
+                    "unit": "mm"
+                },
+                {
+                    "id": 34,
+                    "name": "Curb weight",
+                    "value": "1584",
+                    "unit": "kg"
+                },
+                {
+                    "id": 38,
+                    "name": "Ground clearance",
+                    "value": "175",
+                    "unit": "mm"
+                },
+                {
+                    "id": 44,
+                    "name": "Max trunk capacity",
+                    "value": "1620",
+                    "unit": "l"
+                },
+                {
+                    "id": 45,
+                    "name": "Min trunk capacity",
+                    "value": "605",
+                    "unit": "l"
+                },
+                {
+                    "id": 58,
+                    "name": "Full weight",
+                    "value": "2080",
+                    "unit": "kg"
+                }
+            ]
+        },
+        {
+            "category": {
+                "id": 11,
+                "name": "Engine"
+            },
+            "items": [
+                {
+                    "id": 12,
+                    "name": "Engine type",
+                    "value": "Diesel",
+                    "unit": null
+                },
+                {
+                    "id": 13,
+                    "name": "Capacity",
+                    "value": "1968",
+                    "unit": "cm3"
+                },
+                {
+                    "id": 14,
+                    "name": "Engine power",
+                    "value": "184",
+                    "unit": "hp"
+                },
+                {
+                    "id": 15,
+                    "name": "Max power at RPM",
+                    "value": "from 3 500 to 4 000",
+                    "unit": "RPM"
+                },
+                {
+                    "id": 16,
+                    "name": "Maximum torque",
+                    "value": "380",
+                    "unit": "N*m"
+                },
+                {
+                    "id": 17,
+                    "name": "Injection type",
+                    "value": "direct injection",
+                    "unit": null
+                },
+                {
+                    "id": 19,
+                    "name": "Cylinder layout",
+                    "value": "Inline",
+                    "unit": null
+                },
+                {
+                    "id": 20,
+                    "name": "Number of cylinders",
+                    "value": "4",
+                    "unit": null
+                },
+                {
+                    "id": 39,
+                    "name": "Valves per cylinder",
+                    "value": "4",
+                    "unit": null
+                },
+                {
+                    "id": 46,
+                    "name": "Boost type",
+                    "value": "Turbo",
+                    "unit": null
+                },
+                {
+                    "id": 47,
+                    "name": "Cylinder bore",
+                    "value": "81",
+                    "unit": "mm"
+                },
+                {
+                    "id": 48,
+                    "name": "Stroke cycle",
+                    "value": "95.5",
+                    "unit": "mm"
+                },
+                {
+                    "id": 1564,
+                    "name": "Turnover of maximum torque",
+                    "value": "from 1 750 to 3 250",
+                    "unit": "RPM"
+                }
+            ]
+        },
+        {
+            "category": {
+                "id": 23,
+                "name": "Gearbox and handling"
+            },
+            "items": [
+                {
+                    "id": 24,
+                    "name": "Gearbox type",
+                    "value": "robot",
+                    "unit": null
+                },
+                {
+                    "id": 26,
+                    "name": "Number of gear",
+                    "value": "6",
+                    "unit": null
+                },
+                {
+                    "id": 27,
+                    "name": "Drive wheels",
+                    "value": "All wheel drive (AWD)",
+                    "unit": null
+                },
+                {
+                    "id": 57,
+                    "name": "Turning circle",
+                    "value": "10.9",
+                    "unit": "m"
+                }
+            ]
+        },
+        {
+            "category": {
+                "id": 31,
+                "name": "Operating characteristics"
+            },
+            "items": [
+                {
+                    "id": 22,
+                    "name": "Fuel",
+                    "value": "diesel",
+                    "unit": null
+                },
+                {
+                    "id": 32,
+                    "name": "Max speed",
+                    "value": "219",
+                    "unit": "km/h"
+                },
+                {
+                    "id": 33,
+                    "name": "Acceleration (0-100 km/h)",
+                    "value": "7.8",
+                    "unit": "s"
+                },
+                {
+                    "id": 35,
+                    "name": "Fuel tank capacity",
+                    "value": "55",
+                    "unit": "l"
+                },
+                {
+                    "id": 37,
+                    "name": "Emission standards",
+                    "value": "EURO VI",
+                    "unit": null
+                },
+                {
+                    "id": 50,
+                    "name": "City driving fuel consumption per 100 km",
+                    "value": "5.7",
+                    "unit": "l"
+                },
+                {
+                    "id": 51,
+                    "name": "Highway driving fuel consumption per 100 km",
+                    "value": "4.6",
+                    "unit": "l"
+                },
+                {
+                    "id": 52,
+                    "name": "Mixed driving fuel consumption per 100 km",
+                    "value": "5",
+                    "unit": "l"
+                },
+                {
+                    "id": 62,
+                    "name": "Cruising range",
+                    "value": "from 960 to 1 200",
+                    "unit": "km"
+                }
+            ]
+        },
+        {
+            "category": {
+                "id": 40,
+                "name": "Suspension and brakes"
+            },
+            "items": [
+                {
+                    "id": 29,
+                    "name": "Front brakes",
+                    "value": "ventilated disc",
+                    "unit": null
+                },
+                {
+                    "id": 30,
+                    "name": "Rear brakes",
+                    "value": "Disc",
+                    "unit": null
+                },
+                {
+                    "id": 41,
+                    "name": "Front suspension",
+                    "value": "Independent, spring",
+                    "unit": null
+                },
+                {
+                    "id": 42,
+                    "name": "Back suspension",
+                    "value": "Independent, spring",
+                    "unit": null
+                }
+            ]
+        }
+    ],
+    "equipments": []
+}

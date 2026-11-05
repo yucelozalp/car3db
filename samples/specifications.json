@@ -1,76 +1,299 @@
 {
-  "sample_vehicle": {
-    "make": "Toyota",
-    "model": "RAV4",
-    "generation": "IV (2013-2018)",
-    "series": "RAV4 2.0 CVT",
-    "trim": "Base",
-    "year": 2015,
-    "specifications": {
-      "body": {
-        "type": "Crossover",
-        "doors": null,
-        "seats": "5",
-        "class": null
-      },
-      "dimensions": {
-        "length_mm": "4646 mm",
-        "width_mm": "1806 mm",
-        "height_mm": "1713 mm",
-        "wheelbase_mm": "2670 mm",
-        "ground_clearance_mm": null,
-        "front_track_mm": "1540 mm",
-        "rear_track_mm": "1540 mm",
-        "turning_circle_m": "10.6 m"
-      },
-      "weight_capacity": {
-        "curb_weight_kg": "1570 kg",
-        "full_weight_kg": "2070 kg",
-        "payload_kg": "500 kg",
-        "trunk_min_l": "441 l",
-        "trunk_max_l": "1686 l",
-        "fuel_tank_l": "63 l"
-      },
-      "engine": {
-        "type": "Gasoline",
-        "layout": null,
-        "capacity_cm3": "1998 cm3",
-        "power_hp": "147 hp",
-        "max_power_rpm": "from 6 000 RPM",
-        "torque_nm": "199 N*m",
-        "torque_rpm": "to 4 200 RPM",
-        "cylinder_layout": "Inline",
-        "cylinders": "4",
-        "valves_per_cylinder": "4",
-        "injection_type": "Injector",
-        "compression_ratio": null,
-        "engine_code": null
-      },
-      "performance": {
-        "max_speed_kmh": "180 km/h",
-        "acceleration_0_100_s": "10.2 s"
-      },
-      "fuel_economy": {
-        "fuel_type": "95",
-        "city_consumption_l_100km": "10.3 l",
-        "highway_consumption_l_100km": "6.6 l",
-        "mixed_consumption_l_100km": "8 l",
-        "cruising_range_km": "from 610 to 950 km"
-      },
-      "drivetrain": {
-        "gearbox_type": "Continuously variable transmission (CVT)",
-        "gears": null,
-        "drive_wheels": "Front wheel drive"
-      },
-      "suspension_brakes": {
-        "front_suspension": "Independent, McPherson Struts",
-        "rear_suspension": "Independent, Multi wishbone",
-        "front_brakes": "ventilated disc",
-        "rear_brakes": "Disc"
-      }
-    }
+  "_comment": "Car3DB v2 sample: one complete trim. Data date 2026-11-01.",
+  "vehicle": {
+    "make": "Volkswagen",
+    "model": "Golf",
+    "generation": "7 generation [2012 - 2017]",
+    "year_begin": 2012,
+    "year_end": 2017,
+    "series": "Alltrack wagon 5-doors",
+    "trim": "2.0 TDI DSG 4MOTION (184 hp)",
+    "trim_id": 220224,
+    "start_production_year": null,
+    "end_production_year": null
   },
-  "note": "This is a sample record. The full database contains 262,827+ complete records with all specifications.",
-  "purchase": "https://car3db.gumroad.com/l/enwrs"
+  "specification_groups": {
+    "Bodywork": [
+      {
+        "name": "Body type",
+        "value": "Wagon",
+        "unit": null
+      },
+      {
+        "name": "Curb weight",
+        "value": "1584",
+        "unit": "kg"
+      },
+      {
+        "name": "Front track",
+        "value": "1546",
+        "unit": "mm"
+      },
+      {
+        "name": "Full weight",
+        "value": "2080",
+        "unit": "kg"
+      },
+      {
+        "name": "Ground clearance",
+        "value": "175",
+        "unit": "mm"
+      },
+      {
+        "name": "Height",
+        "value": "1515",
+        "unit": "mm"
+      },
+      {
+        "name": "Length",
+        "value": "4578",
+        "unit": "mm"
+      },
+      {
+        "name": "Max trunk capacity",
+        "value": "1620",
+        "unit": "l"
+      },
+      {
+        "name": "Min trunk capacity",
+        "value": "605",
+        "unit": "l"
+      },
+      {
+        "name": "Number of seater",
+        "value": "5",
+        "unit": null
+      },
+      {
+        "name": "Rear track",
+        "value": "1517",
+        "unit": "mm"
+      },
+      {
+        "name": "Turning circle",
+        "value": "10.9",
+        "unit": "m"
+      },
+      {
+        "name": "Wheelbase",
+        "value": "2630",
+        "unit": "mm"
+      },
+      {
+        "name": "Width",
+        "value": "1799",
+        "unit": "mm"
+      }
+    ],
+    "Engine": [
+      {
+        "name": "Boost type",
+        "value": "Turbo",
+        "unit": null
+      },
+      {
+        "name": "Capacity",
+        "value": "1968",
+        "unit": "cm3"
+      },
+      {
+        "name": "Cylinder bore",
+        "value": "81",
+        "unit": "mm"
+      },
+      {
+        "name": "Cylinder layout",
+        "value": "Inline",
+        "unit": null
+      },
+      {
+        "name": "Engine power",
+        "value": "184",
+        "unit": "hp"
+      },
+      {
+        "name": "Engine type",
+        "value": "Diesel",
+        "unit": null
+      },
+      {
+        "name": "Injection type",
+        "value": "direct injection",
+        "unit": null
+      },
+      {
+        "name": "Max power at RPM",
+        "value": "from 3 500 to 4 000",
+        "unit": "RPM"
+      },
+      {
+        "name": "Maximum torque",
+        "value": "380",
+        "unit": "N*m"
+      },
+      {
+        "name": "Number of cylinders",
+        "value": "4",
+        "unit": null
+      },
+      {
+        "name": "Stroke cycle",
+        "value": "95.5",
+        "unit": "mm"
+      },
+      {
+        "name": "Turnover of maximum torque",
+        "value": "from 1 750 to 3 250",
+        "unit": "RPM"
+      },
+      {
+        "name": "Valves per cylinder",
+        "value": "4",
+        "unit": null
+      }
+    ],
+    "Gearbox and handling": [
+      {
+        "name": "Drive wheels",
+        "value": "All wheel drive (AWD)",
+        "unit": null
+      },
+      {
+        "name": "Gearbox type",
+        "value": "robot",
+        "unit": null
+      },
+      {
+        "name": "Number of gear",
+        "value": "6",
+        "unit": null
+      }
+    ],
+    "Operating characteristics": [
+      {
+        "name": "Acceleration (0-100 km/h)",
+        "value": "7.8",
+        "unit": "s"
+      },
+      {
+        "name": "City driving fuel consumption per 100 km",
+        "value": "5.7",
+        "unit": "l"
+      },
+      {
+        "name": "Cruising range",
+        "value": "from 960 to 1 200",
+        "unit": "km"
+      },
+      {
+        "name": "Emission standards",
+        "value": "EURO VI",
+        "unit": null
+      },
+      {
+        "name": "Fuel",
+        "value": "diesel",
+        "unit": null
+      },
+      {
+        "name": "Fuel tank capacity",
+        "value": "55",
+        "unit": "l"
+      },
+      {
+        "name": "Highway driving fuel consumption per 100 km",
+        "value": "4.6",
+        "unit": "l"
+      },
+      {
+        "name": "Max speed",
+        "value": "219",
+        "unit": "km/h"
+      },
+      {
+        "name": "Mixed driving fuel consumption per 100 km",
+        "value": "5",
+        "unit": "l"
+      }
+    ],
+    "Suspension and brakes": [
+      {
+        "name": "Back suspension",
+        "value": "Independent, spring",
+        "unit": null
+      },
+      {
+        "name": "Front brakes",
+        "value": "ventilated disc",
+        "unit": null
+      },
+      {
+        "name": "Front suspension",
+        "value": "Independent, spring",
+        "unit": null
+      },
+      {
+        "name": "Rear brakes",
+        "value": "Disc",
+        "unit": null
+      }
+    ]
+  },
+  "key_specifications": null,
+  "specs_json_v1_compatible": {
+    "country": null,
+    "car_class": null,
+    "doors": null,
+    "seats": "5",
+    "steering_wheel_position": null,
+    "length_mm": "4578 mm",
+    "width_mm": "1799 mm",
+    "height_mm": "1515 mm",
+    "wheelbase_mm": "2630 mm",
+    "ground_clearance_mm": "175 mm",
+    "front_track_mm": "1546 mm",
+    "rear_track_mm": "1517 mm",
+    "wheel_size": null,
+    "trunk_min_l": "605 l",
+    "trunk_max_l": "1620 l",
+    "fuel_tank_l": "55 l",
+    "curb_weight_kg": "1584 kg",
+    "full_weight_kg": "2080 kg",
+    "payload_kg": null,
+    "gearbox_type": "robot",
+    "gears": "6",
+    "drive_wheels": "All wheel drive (AWD)",
+    "turning_circle_m": "10.9 m",
+    "front_suspension": "Independent, spring",
+    "rear_suspension": "Independent, spring",
+    "front_brakes": "ventilated disc",
+    "rear_brakes": "Disc",
+    "body_type": "Wagon",
+    "max_speed_kmh": "219 km/h",
+    "acceleration_0_100_s": "7.8 s",
+    "fuel_octane": "diesel",
+    "city_consumption_l_100km": "5.7 l",
+    "highway_consumption_l_100km": "4.6 l",
+    "mixed_consumption_l_100km": "5 l",
+    "cruising_range_km": "from 960 to 1 200 km",
+    "engine_type": "Diesel",
+    "engine_layout": null,
+    "engine_capacity_cm3": "1968 cm3",
+    "engine_power_hp": "184 hp",
+    "max_power_rpm": "from 3 500 to 4 000 RPM",
+    "boost_type": "Turbo",
+    "torque_nm": "380 N*m",
+    "torque_rpm": "from 1 750 to 3 250 RPM",
+    "cylinder_layout": "Inline",
+    "injection_type": "direct injection",
+    "cylinders": "4",
+    "valves_per_cylinder": "4",
+    "compression_ratio": null,
+    "bore_mm": "81 mm",
+    "stroke_mm": "95.5 mm",
+    "engine_code": null,
+    "flow_calc_method": null,
+    "engine_model": null,
+    "timing": null
+  }
 }
-
