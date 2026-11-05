@@ -40,7 +40,7 @@ The v1 `specs` table is still exported, so existing integrations keep working �
 | **Models** | 4,742 | Complete model lineups |
 | **Generations** | 10,223 | Model generations with `year_begin` / `year_end` |
 | **Series** | 15,546 | Body/engine family variants |
-| **Trim Levels** | 98,239 | Detailed trim specifications |
+| **Trim Levels** | 98,239 | 97,876 with full specifications, 363 empty upstream |
 | **Specifications (catalogue)** | 82 | Distinct specification fields |
 | **Specification values** | 4,256,122 | One row per trim × field |
 | **Equipment sets** | 33,548 | Named equipment packages |
@@ -235,6 +235,9 @@ app.get('/api/trims/:id', async (req, res) => {
 - **2010s–2026**: Contemporary vehicles, hybrids and EVs
 
 880 generations end in 2025 or later, including model years through 2027.
+
+363 trims carry no specification data upstream (every field is NULL at the source); they are kept so
+the hierarchy stays complete and are marked `specs_status = 'empty'`.
 
 ### Geographic Coverage
 - 🌍 **Global**: manufacturers from every continent

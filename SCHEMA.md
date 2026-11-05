@@ -148,8 +148,15 @@ CREATE TABLE `trims` (
 
 **Example**: `(220224, 51487, 1908, '2.0 TDI DSG 4MOTION (184 hp)', 2013, NULL, 1, 'full', ...)`
 
-`specs_status` tells you whether the specification tables are populated for that trim — useful when
-a partial crawl was interrupted.
+`specs_status` tells you whether the specification tables are populated for that trim:
+
+| value | meaning |
+|---|---|
+| `full` | specifications present (97,876 trims) |
+| `empty` | the source has no specification data for this trim (363 trims — every field was NULL upstream) |
+| `list` | only the lightweight list payload was stored (partial crawl) |
+| `none` | discovered but not fetched yet |
+| `error` | the last fetch failed |
 
 ---
 
